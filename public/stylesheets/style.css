@@ -1,0 +1,7 @@
+.hidden {
+  visibility: hidden;
+}
+.set-cookie label {
+  display: inline-block;
+  min-width: 60px;
+}
