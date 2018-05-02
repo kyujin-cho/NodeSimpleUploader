@@ -76,9 +76,15 @@ router.post('/api/files', async (ctx, next) => {
     while(files.indexOf(fileToUpload.name + (++i).toString()) != -1) ;
   }
   fs.copyFileSync(fileToUpload.path, 'files/' + fileToUpload.name + (i > 0 ? i.toString() : ''))
- 
-
   ctx.redirect('/')
+})
+
+router.post('/api/shouldRefresh', async (ctx, next) => {
+  console.log(ctx.request.body)
+  console.log(ctx.request.body.key == 'site-uploadable' || ctx.request.body.key == 'site-view-private')
+  ctx.body = await {
+    shouldRefresh: ctx.request.body.key == 'site-uploadable' || ctx.request.body.key == 'site-view-private'
+  } 
 })
 
 module.exports = router
